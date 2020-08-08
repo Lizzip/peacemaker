@@ -7,25 +7,23 @@ from signal import pause
 import time
 
 # Gun
-GUN_SPREAD_SPEED = 0.15
+GUN_SPREAD_SPEED = 0.12
 READY_TO_FIRE    = True
 
 # LED strip
-LED_COUNT 	= 19
-LED_PIN		= 18
-LED_FREQ_HZ	= 800000
-LED_DMA		= 5
-LED_BRIGHTNESS	= 55 	# 255 brightest
-LED_INVERT	= False
-LED_OFFSET	= 10  	# Length in LEDs of barrel
+LED_COUNT        = 19 # Number of LEDs in LED Strip
+LED_PIN          = 18 # Controlling pin of Raspberry Pi
+LED_FREQ_HZ      = 800000
+LED_DMA          = 5
+LED_BRIGHTNESS   = 155 # 255 brightest
+LED_INVERT       = False
+LED_OFFSET       = 10  # Length in LEDs of barrel
 
 # Predefined Colours
-OFF 		= Color(0,0,0)
-WHITE		= Color(255,255,255)
-YELLOW		= Color(175,255,0)
-ORANGE		= Color(55,255,0)
-DIM_ORANGE	= Color(25,125,0)
-DIMMER_ORANGE	= Color(5,25,0)
+OFF              = Color(0,0,0)
+YELLOW           = Color(175,255,0)
+ORANGE           = Color(55,255,0)
+DIM_ORANGE       = Color(25,125,0)
 
 
 # Per-pixel fade (from rgb1 to rgb2)
@@ -88,9 +86,15 @@ def shoot():
   global READY_TO_FIRE
   print("firing gun...")
   
-  # Turn off all the LEDs
-  for i in range(LED_COUNT):
-    strip.setPixelColor(i,OFF)
+  # Turn off each LED pair individually starting from gun end (to simulate symbols going out with the bullet)
+  wipe_speed = 0.015
+  for i in range((LED_COUNT - 1)/2, 0, -1):
+    strip.setPixelColor(((LED_COUNT - LED_OFFSET) + i), OFF)
+    strip.setPixelColor(((LED_COUNT - LED_OFFSET) - i), OFF)
+    strip.show()
+    time.sleep(wipe_speed)
+
+  strip.setPixelColor(LED_COUNT - LED_OFFSET, OFF)
   strip.show()
 
   # Flag gun ready to fire again
@@ -113,6 +117,4 @@ if __name__ == '__main__':
   switch.when_released = shoot
 
   # Keep script running
-  #while True:
-  #  switch.wait_for_press()
   pause()
