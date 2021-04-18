@@ -11,8 +11,10 @@ C++ code to be run on an Arduino Nano
 sudo python peacemaker.py
 
 ## Circuit
-Raspberry Pi Circuit:
+Raspberry Pi Circuit:  
+
 ![Pi Circuit Diagram](https://github.com/Lizzip/peacemaker/blob/main/circuit.png)
 
-Arduino Nano Circuit: 
+Arduino Nano Circuit (switch not connected to gun):  
+
 ![Nano Circuit Diagram](https://github.com/Lizzip/peacemaker/blob/main/nano_circuit.png)
