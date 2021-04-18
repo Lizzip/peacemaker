@@ -1,8 +1,18 @@
-# peacemaker
-Python code to run an LED strip for a Wynonna Earp Peacemaker
+# Peacemaker 
+Code to run an LED strip for a Wynonna Earp Peacemaker
+
+## peacemaker.py
+Python code to be run on a Raspberry Pi 2B
+
+## peacemaker.ino
+C++ code to be run on an Arduino Nano
 
 ## Running
 sudo python peacemaker.py
 
 ## Circuit
-![Circuit Diagram](https://github.com/Lizzip/peacemaker/blob/main/circuit.png)
+Raspberry Pi Circuit:
+![Pi Circuit Diagram](https://github.com/Lizzip/peacemaker/blob/main/circuit.png)
+
+Arduino Nano Circuit: 
+![Nano Circuit Diagram](https://github.com/Lizzip/peacemaker/blob/main/nano_circuit.png)
